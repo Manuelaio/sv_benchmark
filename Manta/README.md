@@ -32,3 +32,11 @@ intersectBed -a  NA12878.diploidSV.nbl.bed  -b NA12878_dgv_long_read.bed -f 0.50
 ``` {r}
 sv2 -i NA12878.alt_bwamem_GRCh38DH.20150706.CEU.illumina_platinum_ped.bam -b NA12878.diploidSV.nbl.bed  -snv NA12878.snv.vcf.gz -p NA12878.ped -o ri-genotyping -g hg38 -tmp-dir 
 ```
+
+6) calculate precision and recall 
+
+
+
+
+
+
