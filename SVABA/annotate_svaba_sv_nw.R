@@ -3,7 +3,7 @@ args = commandArgs(trailingOnly=TRUE)
 caller=args[1]
 bed_ann=args[2]
 
-#vcf= "/work/emanuela.iovino/svaba_results/ri_download_NA12878/germline_run.svaba.sv.vcf"
+
 vcf= caller 
 tmp_vcf<-readLines(vcf)
 tmp_vcf<-tmp_vcf[-(grep("#CHROM",tmp_vcf)+1):-(length(tmp_vcf))]
@@ -31,10 +31,10 @@ colnames(df.f)[13]="sv_type"
 df.f$INFO<- paste(df.f$INFO,df.f$sv_type, sep=";SVTYPE=")
 #df.f$END= df.f$ALT[gsub(".*:","", df.f$ALT),]
 header=tmp_vcf[-c(length(tmp_vcf))]
-write.table(header, file="/work/emanuela.iovino/intersect_SV/new_analysis/svaba/trio//header_vcf.txt", 
+write.table(header, file="header_vcf.txt", 
             quote = F, row.names = F, col.names = T)
 
 
-write.table(df.f, file="/work/emanuela.iovino/intersect_SV/new_analysis/svaba/trio//svaba_for_surv.vcf", 
+write.table(df.f, file="svaba_for_surv.vcf", 
             quote = F, row.names = F, col.names = T, sep="\t")
 
