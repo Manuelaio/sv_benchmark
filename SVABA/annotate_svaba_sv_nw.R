@@ -31,7 +31,7 @@ file_df$END= file_df$POS + file_df$X2
 bed= file_df[c(1:2,13,3,10,12)]
 
 write.table(bed, file="NA12878.rearrange.bed", 
-            quote = F, row.names = F, col.names = T, sep="\t")
+            quote = F, row.names = F, col.names = F, sep="\t")
 
 # ann_sv_svaba.vcf
 
@@ -47,6 +47,6 @@ colnames(df1)[10]="sv_type"
 colnames(df1)[1]="#CHROM"
 df1$INFO<- paste(df1$INFO,df1$sv_type, sep=";SVTYPE=")
 
-write.table(df1, file="/work/emanuela.iovino/intersect_SV/new_analysis/svaba/NA12878/svaba_for_surv.vcf", 
+write.table(df1, file="./svaba_for_surv.vcf", 
             quote = F, row.names = F, col.names = T, sep="\t")
 
