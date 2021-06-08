@@ -28,7 +28,7 @@ file_df$X4= gsub("GT=", "", file_df$X4)
 file_df$X2=as.numeric(file_df$X2)
 
 file_df$END= file_df$POS + file_df$X2
-bed= file_df[c(1:2,13,3,12)]
+bed= file_df[c(1:2,13,3,10,12)]
 
 write.table(bed, file="NA12878.rearrange.bed", 
             quote = F, row.names = F, col.names = T, sep="\t")
