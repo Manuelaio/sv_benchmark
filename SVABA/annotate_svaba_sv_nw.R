@@ -11,30 +11,30 @@ tmp_vcf<-tmp_vcf[-(grep("#CHROM",tmp_vcf)+1):-(length(tmp_vcf))]
 cols <- colnames(read.table(pipe(paste0('grep -v "##" ',vcf ,' | grep "#"| sed s/#//')), header = TRUE))
 cols <- sapply(cols, function(x) gsub("(mrkdp\\.)|(\\.bam)", "", x))
 svaba_uniq1 <- read.table(vcf, stringsAsFactors = FALSE)
-#elimino col in piÃ¹ che vengono scritte da svaba ? giÃ  segnalato nelle issue di github 
+#elimino columns in svaba not necessary
+               
 svaba_uniq= svaba_uniq1[-c(10,11,12)]
 colnames(svaba_uniq)= cols
 rm(svaba_uniq1)
-#substring(svaba_uniq, regexpr("SPAN=", svaba_uniq) + 1
-#file=read.table("/work/emanuela.iovino/intersect_SV/new_analysis/svaba/new_ann_sv.bed")
+
+
 # ann_sv_svaba.vcf
-file=read.table(bed_ann)
+file=read.table(bed_ann, stringsAsFactors = F)
 colnames(file)[2]='POS'
 library(dplyr)
 
-df=inner_join(svaba_uniq,file, by='POS')
+df=inner_join(file, svaba_uniq, by='POS')
 
-
-df1= df[c(1:12, 14)]
-df.f= df1[!duplicated(df1),]
-colnames(df.f)[13]="sv_type"
-df.f$INFO<- paste(df.f$INFO,df.f$sv_type, sep=";SVTYPE=")
+a= df[!duplicated(df[1:7]),]
+df1= a[c(9:17,3)]
+#df.f= df1[!duplicated(df1),]
+colnames(df1)[10]="sv_type"
+colnames(df1)[1]="#CHROM"
+df1$INFO<- paste(df1$INFO,df1$sv_type, sep=";SVTYPE=")
 #df.f$END= df.f$ALT[gsub(".*:","", df.f$ALT),]
-header=tmp_vcf[-c(length(tmp_vcf))]
-write.table(header, file="header_vcf.txt", 
-            quote = F, row.names = F, col.names = T)
 
 
-write.table(df.f, file="svaba_for_surv.vcf", 
+
+write.table(df1, file="/work/emanuela.iovino/intersect_SV/new_analysis/svaba/NA12878/svaba_for_surv.vcf", 
             quote = F, row.names = F, col.names = T, sep="\t")
 
