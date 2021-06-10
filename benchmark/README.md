@@ -16,3 +16,9 @@ SURVIVOR merge merge.list 100 1 0 0 0 0 merge.vcf
 
 VCF file is annotated in FILTER column with additional infomration:
 
+*  *likely true* if the variants is genotyped as 0/1 or 1/1
+
+
+*  *uncertain* if the variants is not genotyped, "./." or is genotyped as 0/0
+
+
