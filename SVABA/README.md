@@ -14,4 +14,5 @@ intersectBed -a NA12878.rearrange.nbl.bed -b NA12878_dgv_long_read.bed -f 0.50 -
 
 ``` 
 
-5) 
+5) 6) calculate precision and recall with Rscript [../benchmarck/precision_recall.R](https://github.com/Manuelaio/sv_benchmark/blob/main/benchmark/precision_recall.R)
+
