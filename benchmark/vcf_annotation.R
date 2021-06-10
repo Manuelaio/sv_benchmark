@@ -1,4 +1,5 @@
 library(dplyr)
+library(vcfR)
 merge_path= "merge.vcf"
 cols <- colnames(read.table(pipe(paste0('grep -v "##" ',merge_path ,' | grep "#"| sed s/#//')), header = TRUE))
 cols <- sapply(cols, function(x) gsub("(mrkdp\\.)|(\\.bam)", "", x))
