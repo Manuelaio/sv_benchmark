@@ -1,4 +1,4 @@
-1) RUN svaba with bash scritp 
+1) RUN svaba with bash script [run_svaba.sh](https://github.com/Manuelaio/sv_benchmark/blob/main/SVABA/run_svaba.sh) 
 
 2) Run Perl script
 
@@ -14,3 +14,4 @@ intersectBed -a NA12878.rearrange.nbl.bed -b NA12878_dgv_long_read.bed -f 0.50 -
 
 ``` 
 
+5) 
