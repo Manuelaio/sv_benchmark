@@ -4,4 +4,4 @@ Five of most representative tools for SVs detection was included in our analysis
 The input file of caller is [NA12878.alt_bwamem_GRCh38DH.20150706.CEU.illumina_platinum_ped.cram](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/illumina_platinum_pedigree/data/CEU/NA12878/alignment/NA12878.alt_bwamem_GRCh38DH.20150706.CEU.illumina_platinum_ped.cram) of [1000 genomes](https://www.internationalgenome.org/).
 
 
-SVs calling and processing was resumed in following flow:
+SVs calling and processing was resumed in following image ![alt text](https://github.com/Manuelaio/sv_benchmark/blob/main/CNVs_pipeline.jpg)
