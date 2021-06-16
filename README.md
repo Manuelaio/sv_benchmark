@@ -12,5 +12,5 @@ The required input files are:
   2. BAM file 
   3. SNVs vcf 
   
-The calling step produces vcf output for each caller from which genomic coordinates (.bed) are extracted using Rscript reported in each folder of this repository and are used to re-genotype each calls with [SV2]. 
-Each re-genotyped vcf was merged usign [SURVIVOR]. 
+The calling step produces vcf output for each caller from which genomic coordinates (.bed) are extracted using Rscript reported in each folder of this repository and are used to re-genotype each calls with **SV2**. 
+Each re-genotyped vcf was merged usign **SURVIVOR**. 
