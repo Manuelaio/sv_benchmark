@@ -16,4 +16,5 @@ For each type genomic positions was merged and annotated with segmental duplicat
 bash merge.sh NA12878_dgv_long_read.bed
 
 ```
+The outfile was used as Truset
 
