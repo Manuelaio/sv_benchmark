@@ -10,4 +10,5 @@ A reference calset includes:
  
  
  
- 
+For each type genomic positions was merged  
+
