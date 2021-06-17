@@ -39,5 +39,5 @@ The difference between raw file and merged file is resumed in following table
 A schematic flow is shown in following image 
 
 
-![alt text](https://github.com/Manuelaio/sv_benchmark/blob/main/truset/refSV.PNG)
+![alt text](https://github.com/Manuelaio/sv_benchmark/blob/main/truset/ref_SV.PNG)
 
