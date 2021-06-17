@@ -16,5 +16,22 @@ For each type genomic positions was merged and annotated with segmental duplicat
 bash merge.sh NA12878_dgv_long_read.bed
 
 ```
-The outfile was used as Truset
+The outfile was intersect with ucsc black list with [bedtools](https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html) with following command
+
+```r
+intersectBed -a NA12878_dgv_long_read.merged.annotated.bed -b GRCh38_unified_blacklist.bed -v > NA12878_dgv_long_read.merged.annotated.nbl.bed
+
+```
+
+The difference between raw file and merged file was resumed in following table 
+
+
+
+|    SVS type    |   No merge   |   Merged     |
+| :------------- | :----------: | -----------: |
+|  DEL           | 9042         | 7292         |
+|  DUP           | 2512         | 1755         |
+|  INS           | 13525        | 12894        |
+|  INV           | 258          |  173         |
+
 
