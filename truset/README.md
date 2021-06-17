@@ -10,5 +10,5 @@ A reference calset includes:
  
  
  
-For each type genomic positions was merged  
+For each type genomic positions was merged  using bash script 
 
