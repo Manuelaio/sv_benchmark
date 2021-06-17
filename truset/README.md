@@ -23,7 +23,7 @@ intersectBed -a NA12878_dgv_long_read.merged.annotated.bed -b GRCh38_unified_bla
 
 ```
 
-The difference between raw file and merged file was resumed in following table 
+The difference between raw file and merged file is resumed in following table 
 
 
 
@@ -33,5 +33,11 @@ The difference between raw file and merged file was resumed in following table
 |  DUP           | 2512         | 1755         |
 |  INS           | 13525        | 12894        |
 |  INV           | 258          |  173         |
+
+
+
+A schematic flow is shown in following image 
+
+
 
 
