@@ -5,7 +5,7 @@ Rscript precision_recall.R manta.vcf NA12878_dgv_long_read.bed output_summary.tx
 
 ``` 
 
-The outputs of each caller was merged in a single file `all.txt` both for all SVs both for filterd SVs by segmental duplication and using `make_plot.R ` the precion-recall results could be plotted in stored in pdf file. 
+The outputs of each caller was merged in a single file both for all SVs both for filterd SVs by segmental duplication and using `make_plot.R ` the precion-recall results could be plotted in stored in pdf file. 
 
 The resulting SV calls of the 5 detection tools were merged into one  set using SURVIVOR after SV2 genotyping 
 
