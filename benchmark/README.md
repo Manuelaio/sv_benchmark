@@ -1,7 +1,8 @@
 Calculate precision and recall of caller with Rscript
 
 ``` {r}
-Rscript precision_recall.R manta.bed NA12878_dgv_long_read.bed output_summary.txt
+Rscript precision_recall.R Manta/NA12878.diploidSV.nbl.DGV.bed  NA12878_dgv_long_read.bed output_summary_manta.txt
+Rscript precision_recall.R Manta/NA12878.diploidSV.nbl.DGV.bed  NA12878_dgv_long_read.bed output_summary_manta.txt
 
 ``` 
 
