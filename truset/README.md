@@ -10,7 +10,7 @@ A reference calset includes:
  
  
  
-For each type genomic positions was merged and annotated with segmental duplication and repeted regions using bash script [merge.sh](https://github.com/Manuelaio/sv_benchmark/blob/main/truset/merge.sh)
+For each type genomic positions was merged and annotated with segmental duplication and repeated regions using bash script [merge.sh](https://github.com/Manuelaio/sv_benchmark/blob/main/truset/merge.sh)
 
 ```r
 bash merge.sh NA12878_dgv_long_read.bed
