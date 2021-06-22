@@ -29,5 +29,35 @@ my_data2 <- pass[, col_order]
 my_data2[my_data2$SVTYPE=="DEL",]$SVLEN= as.numeric(my_data2[my_data2$SVTYPE=="DEL",]$SVLEN)*(-1) 
 my_data_final= my_data2[my_data2$SVTYPE!="BND",]
 
+my_data_final$SVLEN=ifelse(my_data_final$SVLEN=="integer(0)", "0", my_data_final$SVLEN)
+my_data_final$SVLEN=as.numeric(unlist(my_data_final$SVLEN))
 
-write.table(my_data_final,file=output, sep="\t",quote= F, row.names = F, col.names = F)
+my_data_gr=makeGRangesFromDataFrame(my_data_final, ignore.strand = T, keep.extra.columns = T)
+
+seg_dup= read.table("Segmental_dups_hg38_frt_srt", stringsAsFactors = F, col.names = c("chrom", "start","end"))
+seg_dup_gr= makeGRangesFromDataFrame(seg_dup, ignore.strand = T, keep.extra.columns = T)
+
+##Intersect goldset and segmental duplications 
+
+tp= findOverlaps(query= my_data_gr, subject = seg_dup_gr, type="any")
+intersect=data.frame(my_data_gr[queryHits(tp),],seg_dup_gr[queryHits(tp),])
+ann_seg_dup= intersect[!duplicated(intersect[1:4]),]
+ann_seg_dup$segdup= "SEG_DUP"
+SG_info= ann_seg_dup[c(1,2,3,6,7,8,14)]
+
+my_data_final_SG= dplyr::left_join(my_data_final,SG_info)
+
+rep_mask= read.table("RepeatMasker_hg38.frt.bed", stringsAsFactors = F, header = T)
+colnames(rep_mask)=c("chrom","start","end","repFamily")
+rep_mask_gr= makeGRangesFromDataFrame(rep_mask, ignore.strand = T, keep.extra.columns = T)
+
+tp2= findOverlaps(query= my_data_gr, subject = rep_mask_gr, type="any")
+intersect_RR=data.frame(my_data_gr[queryHits(tp2),],rep_mask_gr[queryHits(tp2),])
+ann_RR= intersect_RR[!duplicated(intersect_RR[1:4]),]
+RR_info= ann_RR[c(1,2,3,6,7,8,14)]
+
+
+annotation= dplyr::left_join(my_data_final_SG,RR_info)
+ann= annotation[-c(7)]
+
+write.table( ann,file=output, sep="\t",quote= F, row.names = F, col.names = F)
