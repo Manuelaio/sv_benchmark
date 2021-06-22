@@ -30,4 +30,25 @@ my_data2 <- pass[, col_order]
 my_data_final= my_data2[my_data2$SVTYPE!="BND",]
 
 
-write.table(my_data_final,file=output, sep="\t",quote= F, row.names = F, col.names = F)
+my_data_final$SVLEN=ifelse(my_data_final$SVLEN=="integer(0)", "0", my_data_final$SVLEN)
+my_data_final$SVLEN=as.numeric(unlist(my_data_final$SVLEN))
+
+my_data_gr=makeGRangesFromDataFrame(my_data_final, ignore.strand = T, keep.extra.columns = T)
+
+seg_dup= read.table("Segmental_dups_hg38_frt_srt", stringsAsFactors = F, col.names = c("chrom", "start","end"))
+seg_dup_gr= makeGRangesFromDataFrame(seg_dup, ignore.strand = T, keep.extra.columns = T)
+
+##Intersect goldset and segmental duplications 
+
+tp= findOverlaps(query= my_data_gr, subject = seg_dup_gr, type="any")
+intersect=data.frame(my_data_gr[queryHits(tp),],seg_dup_gr[queryHits(tp),])
+ann_seg_dup= intersect[!duplicated(intersect[1:4]),]
+ann_seg_dup$segdup= "SEG_DUP"
+SG_info= ann_seg_dup[c(1,2,3,6,7,8,14)]
+
+my_data_final_SG= dplyr::left_join(my_data_final,SG_info)
+
+
+my_data_final_SG$RR<-"not_annotated"
+ann=my_data_final_SG[-c(7)]
+write.table(ann,file=output, sep="\t",quote= F, row.names = F, col.names = F)
