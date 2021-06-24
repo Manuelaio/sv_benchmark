@@ -2,7 +2,7 @@
 args = commandArgs(trailingOnly=TRUE)
 caller=args[1]
 bed_ann=args[2]
-output= args[3]
+
 
 vcf= caller 
 tmp_vcf<-readLines(vcf)
@@ -17,7 +17,7 @@ colnames(svaba_uniq)= cols
 rm(svaba_uniq1)
 #substring(svaba_uniq, regexpr("SPAN=", svaba_uniq) + 1
 file=read.table("ann_svaba_sv.vcf",stringsAsFactors = F )
-file=read.table(bed_ann, stringsAsFactors = F)
+#file=read.table(bed_ann, stringsAsFactors = F)
 colnames(file)[2]='POS'
 ###rearrange vcf 
 
@@ -29,8 +29,27 @@ file_df$X2=as.numeric(file_df$X2)
 
 file_df$END= file_df$POS + file_df$X2
 bed= file_df[c(1:2,13,3,10,12)]
+colnames(bed)=c("chrom", "start", "end", "type", "len", "geno")
 
-write.table(bed, file=output, 
+my_data_gr=makeGRangesFromDataFrame(bed, ignore.strand = T, keep.extra.columns = T)
+
+seg_dup= read.table("Segmental_dups_hg38_frt_srt", stringsAsFactors = F, col.names = c("chrom", "start","end"))
+seg_dup_gr= makeGRangesFromDataFrame(seg_dup, ignore.strand = T, keep.extra.columns = T)
+
+##Intersect goldset and segmental duplications 
+
+tp= findOverlaps(query= my_data_gr, subject = seg_dup_gr, type="any")
+intersect=data.frame(my_data_gr[queryHits(tp),],seg_dup_gr[queryHits(tp),])
+ann_seg_dup= intersect[!duplicated(intersect[1:4]),]
+ann_seg_dup$segdup= "SEG_DUP"
+SG_info= ann_seg_dup[c(1,2,3,6,7,8,14)]
+
+my_data_final_SG= dplyr::left_join(bed,SG_info)
+my_data_final_SG$RR<-"no_annotated"
+ann=my_data_final_SG[-c(7)]
+
+
+write.table(ann, file="/work/emanuela.iovino/intersect_SV/new_analysis/svaba/NA12878/NA12878.rearrange.bed", 
             quote = F, row.names = F, col.names = F, sep="\t")
 
 # ann_sv_svaba.vcf
@@ -46,8 +65,12 @@ df1= a[c(9:17,3)]
 colnames(df1)[10]="sv_type"
 colnames(df1)[1]="#CHROM"
 df1$INFO<- paste(df1$INFO,df1$sv_type, sep=";SVTYPE=")
+#df.f$END= df.f$ALT[gsub(".*:","", df.f$ALT),]
+#header=tmp_vcf[-c(length(tmp_vcf))]
+#write.table(header, file="/work/emanuela.iovino/intersect_SV/new_analysis/svaba/trio//header_vcf.txt", 
+ #           quote = F, row.names = F, col.names = T)
 
 
-write.table(df1, file="svaba_for_surv.vcf", 
+write.table(df1, file="/work/emanuela.iovino/intersect_SV/new_analysis/svaba/NA12878/svaba_for_surv.vcf", 
             quote = F, row.names = F, col.names = T, sep="\t")
 
