@@ -5,7 +5,7 @@ The input file of caller is [NA12878.alt_bwamem_GRCh38DH.20150706.CEU.illumina_p
 
 
 SVs calling (green), processing (orange) and benchmarking (blu) was resumed in following flow.
-![alt text](https://github.com/Manuelaio/sv_benchmark/blob/main/flow.jpg)
+![alt text](https://github.com/Manuelaio/sv_benchmark/blob/main/flow_sv.jpg)
 
 The required input files are:
   1. Reference file 
