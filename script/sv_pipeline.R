@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 
 ####write bash script for SV pipeline
-####ex: Rscript sv_pipeline.R -i /Users/emanuelaiovino/Desktop/bam/12302_S18.bam -g hg38 -o /Users/emanuelaiovino/Desktop/
+####ex: Rscript sv_pipeline.R -i /bam/NA12878.bam -g hg38 -o /bam/workspace -v NA12878.vcf -p NA12878.ped 
 
 
 library(optparse)
@@ -77,8 +77,8 @@ write.table(sv2.dl, file = dlsv2, sep = " ", append=FALSE, row.names = FALSE, co
 close(dlsv2)
 ##end
 
-file.copy("/work/emanuela.iovino/intersect_SV/benchmark/script/vcf_rearrange_delly.R", folder)
-file.copy("/work/emanuela.iovino/intersect_SV/benchmark/script/intersect.sh", folder)
+file.copy("./script/vcf_rearrange_delly.R", folder)
+file.copy("./script/intersect.sh", folder)
 
 #_______________________________________________________________________________#
 
@@ -117,8 +117,8 @@ write.table(sv2.mt, file = Mtsv2, sep = " ", append=FALSE, row.names = FALSE, co
 close(Mtsv2)
 #end 
 
-file.copy("/work/emanuela.iovino/intersect_SV/benchmark/script/vcf_rerrange_manta.R", folder_m)
-file.copy("/work/emanuela.iovino/intersect_SV/benchmark/script/intersect.sh", folder_m)
+file.copy("./script/vcf_rerrange_manta.R", folder_m)
+file.copy("./script/intersect.sh", folder_m)
 #_________________________________________________________________________________________________________#
 
 folder_s<- paste0(dr,"/svaba")
@@ -160,8 +160,8 @@ write.table(sv2.sv, file = SVsv2, sep = " ", append=FALSE, row.names = FALSE, co
 close(SVsv2)
 #end 
 
-file.copy("/work/emanuela.iovino/intersect_SV/benchmark/script/vcf_rearrange_svaba.R", folder_s)
-file.copy("/work/emanuela.iovino/intersect_SV/benchmark/script/intersect.sh", folder_s)
+file.copy("./script/vcf_rearrange_svaba.R", folder_s)
+file.copy("./script/intersect.sh", folder_s)
 
 #_______________________________________________________________________________________________#
 folder_l<- paste0(dr,"/lumpy")
@@ -208,8 +208,8 @@ write.table(sv2.lp, file = LPsv2, sep = " ", append=FALSE, row.names = FALSE, co
 close(LPsv2)
 #end 
 
-file.copy("/work/emanuela.iovino/intersect_SV/benchmark/script/vcf_rearrange_lumpy.R", folder_l)
-file.copy("/work/emanuela.iovino/intersect_SV/benchmark/script/intersect.sh", folder_l)
+file.copy("./script/vcf_rearrange_lumpy.R", folder_l)
+file.copy("./script/intersect.sh", folder_l)
 
 #____________________________________________________________________________________________#
 
@@ -245,8 +245,8 @@ write.table(sv2.er, file = ERsv2, sep = " ", append=FALSE, row.names = FALSE, co
 close(ERsv2)
 #end
 
-file.copy("/work/emanuela.iovino/intersect_SV/benchmark/script/vcf_rearrange_erds.R", folder_e)
-file.copy("/work/emanuela.iovino/intersect_SV/benchmark/script/intersect.sh", folder_e)
+file.copy("./script/vcf_rearrange_erds.R", folder_e)
+file.copy("./script/intersect.sh", folder_e)
 
 
 
