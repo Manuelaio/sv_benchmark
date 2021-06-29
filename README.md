@@ -13,3 +13,4 @@ The required input files are:
   3. SNVs vcf 
   
 The calling step produces vcf output for each caller while the processing steps rearrange, annotate, re-genotype and merge calls for prioritization and for benchmark. 
+Run 
