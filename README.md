@@ -14,3 +14,5 @@ The required input files are:
   
 The calling step produces vcf output for each caller while the processing steps rearrange, annotate, re-genotype and merge calls for prioritization and for benchmark. 
 Run [sv_pipeline.R](https://github.com/Manuelaio/sv_benchmark/blob/main/script/sv_pipeline.R) to create the whole tree of directory and scripts. 
+
+Rscript script/sv_pipeline.R -i file.bam -g hg38 -v NA12878.vcf.gz -o . -p ./script/NA12878.ped
